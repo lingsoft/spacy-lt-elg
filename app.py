@@ -34,7 +34,6 @@ class cpaCyLt(FlaskService):
                             "features": {
                                 "word": str(word),
                                 "lemma": str(lemma),
-                                "pos": str(pos),
                                 "dep": str(dep),
                                 "morph": str(morph),
                                 "tag": str(tag),
@@ -50,7 +49,6 @@ class cpaCyLt(FlaskService):
                             "features": {
                                 "word": str(word),
                                 "lemma": str(lemma),
-                                "pos": str(pos),
                                 "dep": str(dep),
                                 "morph": str(morph),
                                 "tag": str(tag),
@@ -70,8 +68,7 @@ class cpaCyLt(FlaskService):
                             "start": start,
                             "end": end,
                             "features": {
-                                "text": str(text),
-                                "label": str(label)
+                                "text": str(text)
                             },
                         }
                     ]
@@ -81,8 +78,7 @@ class cpaCyLt(FlaskService):
                             "start": start,
                             "end": end,
                             "features": {
-                                "text": str(text),
-                                "label": str(label)
+                                "text": str(text)
                             },
                         }
                     )
