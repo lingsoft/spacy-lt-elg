@@ -4,7 +4,7 @@ from elg.model import Failure, TextRequest
 from elg.model.base import StandardMessages
 import spacy
 
-class cpaCyLt(FlaskService):
+class SpaCyLt(FlaskService):
 
     nlp = spacy.load("lt_core_news_lg")
 
@@ -88,5 +88,5 @@ class cpaCyLt(FlaskService):
         outputs = self.nlp(content.content)
         return self.convert_outputs(outputs, content.content)
 
-flask_service = cpaCyLt(name="spaCyLt", path="/process/<endpoint>")
+flask_service = SpaCyLt(name="spaCyLt", path="/process/<endpoint>")
 app = flask_service.app
