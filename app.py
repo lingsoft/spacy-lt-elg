@@ -26,62 +26,33 @@ class SpaCyLt(FlaskService):
                 end = start + len(word)
                 content = content[end - offset :]
                 offset = end
-                if pos not in annotations.keys():
-                    annotations[pos] = [
-                        {
-                            "start": start,
-                            "end": end,
-                            "features": {
-                                "word": str(word),
-                                "lemma": str(lemma),
-                                "dep": str(dep),
-                                "morph": str(morph),
-                                "tag": str(tag),
-                                "head": str(head)
-                            },
+                annot = {
+                    "start": start,
+                    "end": end,
+                    "features": {
+                        "word": str(word),
+                        "lemma": str(lemma),
+                        "dep": str(dep),
+                        "morph": str(morph),
+                        "tag": str(tag),
+                        "head": str(head)
                         }
-                    ]
-                else:
-                    annotations[pos].append(
-                        {
-                            "start": start,
-                            "end": end,
-                            "features": {
-                                "word": str(word),
-                                "lemma": str(lemma),
-                                "dep": str(dep),
-                                "morph": str(morph),
-                                "tag": str(tag),
-                                "head": str(head)
-                            },
-                        }
-                    )
+                    }
+                annotations.setdefault(pos, []).append(annot)
         elif endpoint == "ner":
             for ent in outputs.ents:
                 text = ent.text
                 start = ent.start_char
                 end  = ent.end_char
                 label  = ent.label_
-                if label not in annotations.keys():
-                    annotations[label] = [
-                        {
-                            "start": start,
-                            "end": end,
-                            "features": {
-                                "text": str(text)
-                            },
-                        }
-                    ]
-                else:
-                    annotations[label].append(
-                        {
-                            "start": start,
-                            "end": end,
-                            "features": {
-                                "text": str(text)
-                            },
-                        }
-                    )
+                annot = {
+                    "start": start,
+                    "end": end,
+                    "features": {
+                        "text": str(text)
+                    }
+                }
+                annotations.setdefault(label, []).append(annot)
         return AnnotationsResponse(annotations=annotations)
 
     def process_text(self, content):
