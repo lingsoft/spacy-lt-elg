@@ -34,11 +34,11 @@ class cpaCyLt(FlaskService):
                             "features": {
                                 "word": str(word),
                                 "lemma": str(lemma),
-                                "part of speech": str(pos),
-                                "syntactic dependency": str(dep),
-                                "morphological features": str(morph),
-                                "morphological tag": str(tag),
-                                "syntactic parent": str(head)
+                                "pos": str(pos),
+                                "dep": str(dep),
+                                "morph": str(morph),
+                                "tag": str(tag),
+                                "head": str(head)
                             },
                         }
                     ]
@@ -50,11 +50,11 @@ class cpaCyLt(FlaskService):
                             "features": {
                                 "word": str(word),
                                 "lemma": str(lemma),
-                                "part of speech": str(pos),
-                                "syntactic dependency": str(dep),
-                                "morphological features": str(morph),
-                                "morphological tag": str(tag),
-                                "syntactic parent": str(head)
+                                "pos": str(pos),
+                                "dep": str(dep),
+                                "morph": str(morph),
+                                "tag": str(tag),
+                                "head": str(head)
                             },
                         }
                     )
@@ -70,7 +70,7 @@ class cpaCyLt(FlaskService):
                             "start": start,
                             "end": end,
                             "features": {
-                                "entity": str(text),
+                                "text": str(text),
                                 "label": str(label)
                             },
                         }
@@ -81,7 +81,7 @@ class cpaCyLt(FlaskService):
                             "start": start,
                             "end": end,
                             "features": {
-                                "entity": str(text),
+                                "text": str(text),
                                 "label": str(label)
                             },
                         }
