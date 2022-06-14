@@ -69,7 +69,7 @@ Tagger
   "response": {
     "type": "annotations",
     "annotations": {
-      "<POS tag>":[ // list of tokens that were recognized
+      "<POS tag>": [ // list of tokens that were recognized
         {
           "start":number,
           "end":number,
@@ -88,7 +88,7 @@ NER
   "response": {
     "type": "annotations",
     "annotations": {
-      "<NER label>":[ // list of entities that were recognized
+      "<NER label>": [ // list of entities that were recognized
         {
           "start":number,
           "end":number,
