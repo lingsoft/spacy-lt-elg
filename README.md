@@ -12,8 +12,8 @@ This ELG API was developed in EU's CEF project: [Microservices at your service](
 
 Setup virtualenv, dependencies
 ```
-python -m venv nb-ner-elg-venv
-source nb-ner-elg-venv/bin/activate
+python -m venv spacy-lt-elg-venv
+source spacy-lt-elg-venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
