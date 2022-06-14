@@ -53,10 +53,10 @@ curl -H "Content-Type: application/json" -d @text-request.json -X POST http://lo
 
 ### Text request
 
-```json
+```
 {
     "type": "text",
-    "content": <text to be analyzed>
+    "content": text to be analyzed
 }
 ```
 
@@ -64,7 +64,7 @@ curl -H "Content-Type: application/json" -d @text-request.json -X POST http://lo
 
 Tagger
 
-```json
+```
 {
   "response": {
     "type": "annotations",
@@ -83,7 +83,7 @@ Tagger
 
 NER
 
-```json
+```
 {
   "response": {
     "type": "annotations",
