@@ -17,7 +17,7 @@ source spacy-lt-elg-venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-Install spaCy and the large Lithanian model.
+Install spaCy and the large Lithuanian model.
 
 ```
 pip install -U spacy
