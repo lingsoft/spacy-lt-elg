@@ -32,15 +32,15 @@ FLASK_ENV=development flask run --host 0.0.0.0 --port 8000
 ## Building the docker image
 
 ```
-docker build -t spacy-lt .
+docker build -t spacy-lt-elg .
 ```
 
-Or pull directly ready-made image `docker pull lingsoft/spacy-lt:tagname`.
+Or pull directly ready-made image `docker pull lingsoft/spacy-lt-elg:3.3.0-elg`.
 
 ## Deploying the service
 
 ```
-docker run -d -p <port>:8000 --init --memory="2g" --restart always spacy-lt
+docker run -d -p <port>:8000 --init --memory="2g" --restart always spacy-lt-elg
 ```
 
 ## Example call
