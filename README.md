@@ -56,7 +56,7 @@ curl -H "Content-Type: application/json" -d @text-request.json -X POST http://lo
 ```json
 {
     "type": "text",
-    "content": text to be analyzed
+    "content": <text to be analyzed>
 }
 ```
 
