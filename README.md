@@ -6,7 +6,7 @@ This git repository contains [ELG compatible](https://european-language-grid.rea
 
 You can call two endpoints: `tagger` and `ner`. `tagger` groups tokens by their [pos](https://spacy.io/api/morphologizer) tag and also shows their starting and ending indexes, [lemma](https://spacy.io/api/lemmatizer), [dep](https://spacy.io/api/dependencyparser), [morph](https://spacy.io/api/morphologizer), [tag](https://spacy.io/api/tagger), [head](https://spacy.io/api/dependencyparser). `ner` groups entities (that can contain more than 1 token) by their [label](https://spacy.io/usage/linguistic-features#named-entities) tag and shows their starting and ending indexes.
 
-This ELG API was developed in EU's CEF project: [Microservices at your service](https://www.lingsoft.fi/en/microservices-at-your-service-bridging-gap-between-nlp-research-and-industry)
+This ELG API was developed in EU's CEF project [Microservices at your service](https://www.lingsoft.fi/en/microservices-at-your-service-bridging-gap-between-nlp-research-and-industry).
 
 ## Local development
 
