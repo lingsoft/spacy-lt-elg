@@ -73,7 +73,7 @@ Tagger
         {
           "start":number,
           "end":number,
-          "features": {"word": str, "lemma": str, "dep": str, "morph": str, "tag": str, "head": str}
+          "features": {"lemma": str, "dep": str, "morph": str, "tag": str, "head": str}
         },
       ],
     }
@@ -91,8 +91,7 @@ NER
       "<NER label>": [ // list of entities that were recognized
         {
           "start":number,
-          "end":number,
-          "features": {"text": str}
+          "end":number
         },
       ],
     }
@@ -105,8 +104,6 @@ NER
 Tagger
 - `start` and `end` (int)
   - indices of the token in the request
-- `word` (str)
-  - recognized word
 - [pos](https://spacy.io/api/morphologizer)
   - UPOS part of speech
 - [lemma](https://spacy.io/api/lemmatizer)
@@ -127,5 +124,3 @@ NER
   - indices of the entity in the request
 - [label](https://spacy.io/usage/linguistic-features#named-entities)
   - NER label
-- `text` (str)
-  - recognized entity
