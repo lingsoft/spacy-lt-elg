@@ -1,7 +1,5 @@
 from elg import FlaskService
 from elg.model import AnnotationsResponse
-from elg.model import Failure, TextRequest
-from elg.model.base import StandardMessages
 import spacy
 
 class SpaCyLt(FlaskService):
