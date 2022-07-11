@@ -6,9 +6,8 @@ ENV PYTHONUNBUFFERED=1
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt /app/
-RUN pip install --no-cache-dir  -r requirements.txt 
-RUN pip install spacy
-RUN python -m spacy download lt_core_news_lg
+RUN pip install --no-cache-dir -r requirements.txt && \
+    python -m spacy download lt_core_news_lg
 
 # Install basic deps
 FROM python:3.8-slim
