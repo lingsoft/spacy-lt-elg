@@ -1,1 +1,3 @@
+spacy
+gunicorn
 elg[flask]
