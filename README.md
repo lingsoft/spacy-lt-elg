@@ -11,6 +11,7 @@ This ELG API was developed in EU's CEF project [Microservices at your service](h
 ## Local development
 
 Setup virtualenv, dependencies
+
 ```
 python -m venv spacy-lt-elg-venv
 source spacy-lt-elg-venv/bin/activate
@@ -25,6 +26,7 @@ python -m spacy download lt_core_news_lg
 ```
 
 Run the development mode flask app
+
 ```
 FLASK_ENV=development flask run --host 0.0.0.0 --port 8000
 ```
@@ -40,42 +42,76 @@ Or pull directly ready-made image `docker pull lingsoft/spacy-lt:3.3.0-elg`.
 ## Deploying the service
 
 ```
-docker run -d -p <port>:8000 --init --memory="2g" --restart always spacy-lt
+docker run -d -p <port>:8000 --init spacy-lt
 ```
 
 ## Example call
 
 ```
-curl -H "Content-Type: application/json" -d @text-request.json -X POST http://localhost:<port>/process/<endpoint_name>
+curl -X POST -H 'Content-Type: application/json' http://localhost:8000/process/<endpoint> -d '{"type":"text","content":"Filipas gyvena Vilniuje."}'
 ```
-`endpoint_name` can be `tagger` or `ner`. 
 
-
-### Text request
-
-```
-{
-    "type": "text",
-    "content": text to be analyzed
-}
-```
+`endpoint` can be `tagger` or `ner`. 
 
 ### Response
 
 Tagger
 
-```
+```json
 {
   "response": {
     "type": "annotations",
     "annotations": {
-      "<POS tag>": [ // list of tokens that were recognized
+      "PROPN": [
         {
-          "start":number,
-          "end":number,
-          "features": {"lemma": str, "dep": str, "morph": str, "tag": str, "head": str}
+          "start": 0,
+          "end": 7,
+          "features": {
+            "lemma": "Filipas",
+            "dep": "nsubj",
+            "morph": "Case=Nom|Gender=Masc|Number=Sing",
+            "tag": "dkt.tikr.vyr.vns.V.",
+            "head": "gyvena"
+          }
         },
+        {
+          "start": 15,
+          "end": 23,
+          "features": {
+            "lemma": "Vilnius",
+            "dep": "obl",
+            "morph": "Case=Loc|Gender=Masc|Number=Sing",
+            "tag": "dkt.tikr.vyr.vns.Vt.",
+            "head": "gyvena"
+          }
+        }
       ],
+      "VERB": [
+        {
+          "start": 8,
+          "end": 14,
+          "features": {
+            "lemma": "gyventi",
+            "dep": "ROOT",
+            "morph": "Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin",
+            "tag": "vksm.asm.tiesiog.es.vns.3.",
+            "head": "gyvena"
+          }
+        }
+      ],
+      "PUNCT": [
+        {
+          "start": 23,
+          "end": 24,
+          "features": {
+            "lemma": ".",
+            "dep": "punct",
+            "morph": "",
+            "tag": "skyr.",
+            "head": "gyvena"
+          }
+        }
+      ]
     }
   }
 }
@@ -83,20 +119,27 @@ Tagger
 
 NER
 
-```
+```json
 {
   "response": {
     "type": "annotations",
     "annotations": {
-      "<NER label>": [ // list of entities that were recognized
+      "PERSON": [
         {
-          "start":number,
-          "end":number
-        },
+          "start": 0,
+          "end": 7
+        }
       ],
+      "LOC": [
+        {
+          "start": 15,
+          "end": 23
+        }
+      ]
     }
   }
 }
+
 ```
 
 ### Response structure
