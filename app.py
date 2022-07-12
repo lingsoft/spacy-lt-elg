@@ -17,18 +17,18 @@ class SpaCyLt(FlaskService):
         offset = 0
         if endpoint == "tagger":
             for token in outputs:
-                pos  = token.pos_
+                pos = token.pos_
                 if pos != "SPACE":
                     word = token.text
                     lemma = token.lemma_
-                    dep  = token.dep_
+                    dep = token.dep_
                     morph = token.morph
                     tag = token.tag_
                     head = token.head
 
                     start = content.find(word) + offset
                     end = start + len(word)
-                    content = content[end - offset :]
+                    content = content[end - offset:]
                     offset = end
                     annot = {
                         "start": start,
@@ -44,10 +44,9 @@ class SpaCyLt(FlaskService):
                     annotations.setdefault(pos, []).append(annot)
         elif endpoint == "ner":
             for ent in outputs.ents:
-                text = ent.text
                 start = ent.start_char
-                end  = ent.end_char
-                label  = ent.label_
+                end = ent.end_char
+                label = ent.label_
                 annot = {
                     "start": start,
                     "end": end,
