@@ -11,10 +11,13 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 
 # Install basic deps
 FROM python:3.9-slim
-RUN apt-get update && apt-get -y install --no-install-recommends tini \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
-RUN addgroup --gid 1001 "elg" && adduser --disabled-password --gecos "ELG User,,," --home /elg --ingroup elg --uid 1001 elg && chmod +x /usr/bin/tini
+RUN apt-get update && \
+    apt-get -y install --no-install-recommends tini && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    addgroup --gid 1001 "elg" && \
+    adduser --disabled-password --gecos "ELG User,,," --home /elg --ingroup elg --uid 1001 elg && \
+    chmod +x /usr/bin/tini
 COPY --chown=elg:elg --from=venv-build /opt/venv /opt/venv
 
 USER elg:elg
