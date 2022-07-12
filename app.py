@@ -1,6 +1,8 @@
 from elg import FlaskService
-from elg.model import AnnotationsResponse
+from elg.model import TextRequest, AnnotationsResponse, Failure
+from elg.model.base import StandardMessages
 import spacy
+
 
 class SpaCyLt(FlaskService):
 
@@ -50,9 +52,16 @@ class SpaCyLt(FlaskService):
                 annotations.setdefault(label, []).append(annot)
         return AnnotationsResponse(annotations=annotations)
 
-    def process_text(self, content):
-        outputs = self.nlp(content.content)
-        return self.convert_outputs(outputs, content.content)
+    def process_text(self, request: TextRequest):
+        try:
+            content = request.content
+            outputs = self.nlp(content)
+            return self.convert_outputs(outputs, content)
+        except Exception as err:
+            error = StandardMessages.\
+                    generate_elg_service_internalerror(params=[str(err)])
+            return Failure(errors=[error])
+
 
 flask_service = SpaCyLt(name="spaCyLt", path="/process/<endpoint>")
 app = flask_service.app
