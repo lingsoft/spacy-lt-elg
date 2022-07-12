@@ -4,6 +4,9 @@ from elg.model.base import StandardMessages
 import spacy
 
 
+MAX_CHAR = 15000
+
+
 class SpaCyLt(FlaskService):
 
     nlp = spacy.load("lt_core_news_lg")
@@ -50,16 +53,23 @@ class SpaCyLt(FlaskService):
                     "end": end,
                 }
                 annotations.setdefault(label, []).append(annot)
+        else:
+            error = StandardMessages.generate_elg_service_not_found(
+                    params=[endpoint])
+            return Failure(errors=[error])
         return AnnotationsResponse(annotations=annotations)
 
     def process_text(self, request: TextRequest):
+        content = request.content
+        if len(content) > MAX_CHAR:
+            error = StandardMessages.generate_elg_request_too_large()
+            return Failure(errors=[error])
         try:
-            content = request.content
             outputs = self.nlp(content)
             return self.convert_outputs(outputs, content)
         except Exception as err:
-            error = StandardMessages.\
-                    generate_elg_service_internalerror(params=[str(err)])
+            error = StandardMessages.generate_elg_service_internalerror(
+                    params=[str(err)])
             return Failure(errors=[error])
 
 
