@@ -1,7 +1,6 @@
 import unittest
-import os
-import requests
 import json
+import requests
 
 
 API_URL = 'http://localhost:8000/process/'
@@ -11,8 +10,7 @@ def call_api(endpoint, text):
     url = API_URL + endpoint
     headers = {'Content-Type': 'application/json'}
     payload = json.dumps({"type": "text", "content": text})
-    return  requests.post(
-            url, headers=headers, data=payload).json()
+    return requests.post(url, headers=headers, data=payload).json()
 
 
 class TestEndpoint(unittest.TestCase):
