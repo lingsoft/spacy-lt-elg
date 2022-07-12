@@ -174,3 +174,14 @@ NER
   - indices of the entity in the request
 - [label](https://spacy.io/usage/linguistic-features#named-entities)
   - NER label
+
+### Local ELG GUIs
+
+Use ELG-compatible services from GUIs locally
+
+```
+cd elg_local_<endpoint> && docker-compose up
+```
+
+The GUI is accessible on `http://localhost:5080`. See more
+[instructions](https://european-language-grid.readthedocs.io/en/stable/all/A1_PythonSDK/DeployServicesLocally.html#deploy-elg-compatible-service-from-its-docker-image).
