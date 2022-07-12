@@ -8,7 +8,7 @@ You can call two endpoints: `tagger` and `ner`. `tagger` groups tokens by their 
 
 This ELG API was developed in EU's CEF project [Microservices at your service](https://www.lingsoft.fi/en/microservices-at-your-service-bridging-gap-between-nlp-research-and-industry).
 
-## Local development
+## Development
 
 Setup virtualenv, dependencies
 
@@ -30,6 +30,13 @@ Run the development mode flask app
 ```
 FLASK_ENV=development flask run --host 0.0.0.0 --port 8000
 ```
+
+Tests
+
+```
+python -m unittest tests/test_integration.py -v
+```
+
 
 ## Building the docker image
 
