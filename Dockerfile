@@ -1,5 +1,5 @@
 # Build venv
-FROM python:3.8-slim as venv-build
+FROM python:3.9-slim as venv-build
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt && \
     python -m spacy download lt_core_news_lg
 
 # Install basic deps
-FROM python:3.8-slim
+FROM python:3.9-slim
 RUN apt-get update && apt-get -y install --no-install-recommends tini \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
