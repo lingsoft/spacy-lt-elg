@@ -38,7 +38,8 @@ class TestTaggerIntegration(unittest.TestCase):
     def test_tagger_response_content(self):
         response = call_api(self.endpoint, self.text)
         for entity in ("PROPN", "VERB", "PUNCT"):
-            self.assertIn(entity, response["response"]["annotations"])
+            self.assertIn(entity, [t["features"]["pos"] for t in response["response"]["annotations"]["token"]])
+        self.assertIn("sentence", response["response"]["annotations"])
 
     def test_tagger_with_empty_request(self):
         response = call_api(self.endpoint, "")
@@ -58,7 +59,7 @@ class TestTaggerIntegration(unittest.TestCase):
     def test_tagger_with_special_characters(self):
         spec_text = "\N{grinning face}\u4e01\u0009" + self.text + "\u0008"
         response = call_api(self.endpoint, spec_text)
-        gpe = response["response"]["annotations"]["PROPN"][1]
+        gpe = [t for t in response["response"]["annotations"]["token"] if t["features"]["pos"] == "PROPN"][1]
         self.assertEqual(spec_text[gpe["start"]:gpe["end"]], "Vilniuje")
 
 

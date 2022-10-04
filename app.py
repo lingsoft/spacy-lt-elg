@@ -16,32 +16,38 @@ class SpaCyLt(FlaskService):
         annotations = {}
         offset = 0
         if endpoint == "tagger":
-            for token in outputs:
-                pos = token.pos_
-                if pos != "SPACE":
-                    word = token.text
-                    lemma = token.lemma_
-                    dep = token.dep_
-                    morph = token.morph
-                    tag = token.tag_
-                    head = token.head
+            for sent in outputs.sents:
+                annotations.setdefault("sentence", []).append({
+                    "start": sent.start_char,
+                    "end": sent.end_char,
+                    "features": {},
+                })
+                for token in sent:
+                    pos = token.pos_
+                    if pos != "SPACE":
+                        word = token.text
+                        lemma = token.lemma_
+                        dep = token.dep_
+                        morph = token.morph
+                        tag = token.tag_
+                        head = token.head
 
-                    start = content.find(word) + offset
-                    end = start + len(word)
-                    content = content[end - offset:]
-                    offset = end
-                    annot = {
-                        "start": start,
-                        "end": end,
-                        "features": {
-                            "lemma": str(lemma),
-                            "dep": str(dep),
-                            "morph": str(morph),
-                            "tag": str(tag),
-                            "head": str(head)
+                        start = token.idx
+                        end = start + len(word)
+                        annot = {
+                            "start": start,
+                            "end": end,
+                            "features": {
+                                "id": f"w{token.i}",
+                                "lemma": str(lemma),
+                                "dep": str(dep),
+                                "morph": str(morph),
+                                "tag": str(tag),
+                                "pos": str(pos),
+                                "head": f"w{head.i}" if head and head.i != token.i else None,
+                                }
                             }
-                        }
-                    annotations.setdefault(pos, []).append(annot)
+                        annotations.setdefault( "token", []).append(annot)
         elif endpoint == "ner":
             for ent in outputs.ents:
                 start = ent.start_char

@@ -4,7 +4,7 @@ This git repository contains [ELG compatible](https://european-language-grid.rea
 
 [lt_core_news_lg](https://spacy.io/models/lt#lt_core_news_lg) is a large Lithuanian pipeline trained on written web text (blogs, news, comments), that includes vocabulary, syntax and entities. It has a large word vector table with 500000 keys and 500000 unique vectors (300 dimensions). The model was developed based on the following datasets: [UD Lithuanian ALKSNIS v2.8](https://github.com/UniversalDependencies/UD_Lithuanian-ALKSNIS), [TokenMill NER Corpus](https://www.tokenmill.lt/), [Explosion fastText Vectors (cbow, OSCAR Common Crawl + Wikipedia)](https://spacy.io/). The library is published under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license and its main developers are Matthew Honnibal and Ines Montani, the founders of the software company [Explosion](https://explosion.ai/).
 
-You can call two endpoints: `tagger` and `ner`. `tagger` groups tokens by their [pos](https://spacy.io/api/morphologizer) tag and also shows their starting and ending indexes, [lemma](https://spacy.io/api/lemmatizer), [dep](https://spacy.io/api/dependencyparser), [morph](https://spacy.io/api/morphologizer), [tag](https://spacy.io/api/tagger), [head](https://spacy.io/api/dependencyparser). `ner` groups entities (that can contain more than 1 token) by their [label](https://spacy.io/usage/linguistic-features#named-entities) tag and shows their starting and ending indexes.
+You can call two endpoints: `tagger` and `ner`. `tagger` produces annotations `token` and `sentence`, and each token includes features with the [pos](https://spacy.io/api/morphologizer) tag, [lemma](https://spacy.io/api/lemmatizer), [dep](https://spacy.io/api/dependencyparser), [morph](https://spacy.io/api/morphologizer), [tag](https://spacy.io/api/tagger), and [head](https://spacy.io/api/dependencyparser) link in the dependency tree. `ner` groups entities (that can contain more than 1 token) by their [label](https://spacy.io/usage/linguistic-features#named-entities) tag and shows their starting and ending indexes.
 
 This ELG API was developed in EU's CEF project [Microservices at your service](https://www.lingsoft.fi/en/microservices-at-your-service-bridging-gap-between-nlp-research-and-industry).
 
@@ -69,11 +69,19 @@ Tagger
   "response": {
     "type": "annotations",
     "annotations": {
-      "PROPN": [
+      "sentence": [
+        {
+          "start": 0,
+          "end": 24,
+          "features": {}
+        }
+      ],
+      "token": [
         {
           "start": 0,
           "end": 7,
           "features": {
+            "pos": "PROPN",
             "lemma": "Filipas",
             "dep": "nsubj",
             "morph": "Case=Nom|Gender=Masc|Number=Sing",
@@ -82,35 +90,34 @@ Tagger
           }
         },
         {
-          "start": 15,
-          "end": 23,
-          "features": {
-            "lemma": "Vilnius",
-            "dep": "obl",
-            "morph": "Case=Loc|Gender=Masc|Number=Sing",
-            "tag": "dkt.tikr.vyr.vns.Vt.",
-            "head": "gyvena"
-          }
-        }
-      ],
-      "VERB": [
-        {
           "start": 8,
           "end": 14,
           "features": {
+            "pos": "VERB",
             "lemma": "gyventi",
             "dep": "ROOT",
             "morph": "Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin",
             "tag": "vksm.asm.tiesiog.es.vns.3.",
             "head": "gyvena"
           }
-        }
-      ],
-      "PUNCT": [
+        },
+        {
+          "start": 15,
+          "end": 23,
+          "features": {
+            "pos": "PROPN",
+            "lemma": "Vilnius",
+            "dep": "obl",
+            "morph": "Case=Loc|Gender=Masc|Number=Sing",
+            "tag": "dkt.tikr.vyr.vns.Vt.",
+            "head": "gyvena"
+          }
+        },
         {
           "start": 23,
           "end": 24,
           "features": {
+            "pos": "PUNCT",
             "lemma": ".",
             "dep": "punct",
             "morph": "",
@@ -164,10 +171,10 @@ Tagger
   - morphological features
 - [tag](https://spacy.io/api/tagger)
   - part of speech
+- id
+  - unique identifier of this token
 - [head](https://spacy.io/api/dependencyparser)
-  - syntactic parent, or “governor”, of this token
-
- [label](https://spacy.io/usage/linguistic-features#named-entities) tag and shows their starting and ending indexes.
+  - syntactic parent, or “governor”, of this token, expressed as a link to the head token's `id`
 
 NER
 - `start` and `end` (int)
