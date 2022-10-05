@@ -54,7 +54,7 @@
     }
   }, false);
 
-  iframe.src = '/egistry_gitlab_com_european_language_grid_usfd_gui_ie_latest/';
+  iframe.src = '/egistry_gitlab_com_european_language_grid_usfd_gui_ie_latest/index-dependency.html?token=token&sentence=sentence&id=id&parent=head&label=text&label=00008b;dep&label=004048;pos';
 })();
 
 </script>
