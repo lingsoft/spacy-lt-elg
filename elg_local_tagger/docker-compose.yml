@@ -3,7 +3,7 @@ version: "2.0"
 services:
   
   spacy-lt-tagger:
-    image: "lingsoft/spacy-lt:3.3.0-elg"
+    image: "lingsoft/spacy-lt:3.3.1-elg"
     environment: []
     restart: always
 
