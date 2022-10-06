@@ -44,7 +44,7 @@ python -m unittest tests/test_integration.py -v
 docker build -t spacy-lt .
 ```
 
-Or pull directly ready-made image `docker pull lingsoft/spacy-lt:3.3.0-elg`.
+Or pull directly ready-made image `docker pull lingsoft/spacy-lt:3.3.1-elg`.
 
 ## Deploying the service
 
