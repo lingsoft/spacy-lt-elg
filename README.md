@@ -81,48 +81,52 @@ Tagger
           "start": 0,
           "end": 7,
           "features": {
-            "pos": "PROPN",
+            "id": "w0",
             "lemma": "Filipas",
             "dep": "nsubj",
             "morph": "Case=Nom|Gender=Masc|Number=Sing",
             "tag": "dkt.tikr.vyr.vns.V.",
-            "head": "gyvena"
+            "pos": "PROPN",
+            "head": "w1"
           }
         },
         {
           "start": 8,
           "end": 14,
           "features": {
-            "pos": "VERB",
+            "id": "w1",
             "lemma": "gyventi",
             "dep": "ROOT",
             "morph": "Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin",
             "tag": "vksm.asm.tiesiog.es.vns.3.",
-            "head": "gyvena"
+            "pos": "VERB",
+            "head": null
           }
         },
         {
           "start": 15,
           "end": 23,
           "features": {
-            "pos": "PROPN",
+            "id": "w2",
             "lemma": "Vilnius",
             "dep": "obl",
             "morph": "Case=Loc|Gender=Masc|Number=Sing",
             "tag": "dkt.tikr.vyr.vns.Vt.",
-            "head": "gyvena"
+            "pos": "PROPN",
+            "head": "w1"
           }
         },
         {
           "start": 23,
           "end": 24,
           "features": {
-            "pos": "PUNCT",
+            "id": "w3",
             "lemma": ".",
             "dep": "punct",
             "morph": "",
             "tag": "skyr.",
-            "head": "gyvena"
+            "pos": "PUNCT",
+            "head": "w1"
           }
         }
       ]
